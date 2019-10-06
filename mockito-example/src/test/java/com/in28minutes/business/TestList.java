@@ -1,6 +1,7 @@
 package com.in28minutes.business;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyInt;
 
 import java.util.List;
@@ -49,6 +50,23 @@ public class TestList {
 		Mockito.when(mock.get(anyInt())).thenThrow(new RuntimeException("Message Exception"));
 		
 		mock.get(0);
+		
+		
+	}
+	
+	
+	@Test
+	public void letsMockListSizeGet_usingBDD() {
+		
+		//Given
+		List<String> mock = Mockito.mock(List.class);
+		given(mock.get(anyInt())).willReturn("SameResult");
+		//when
+		
+		String firstElement = mock.get(0);
+		
+		//then
+		assertEquals("SameResult", firstElement);
 		
 		
 	}
